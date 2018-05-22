@@ -7,6 +7,7 @@ package joguinhodavelha;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -14,12 +15,150 @@ import javax.swing.ImageIcon;
  */
 public class Tela extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tela
-     */
+    private String[] tabuleiro;
+    private int turno;
+    
     public Tela() {
         this.getContentPane().setBackground(Color.BLACK);
+        this.tabuleiro = new String[]{"","","","","","","","",""};
+        this.turno = 0;
         initComponents();
+    }
+    
+    private void jogadaJogador(int posicao, JButton botao){
+        botao.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        tabuleiro[posicao - 1] = "X";
+        turno++;
+    }
+    
+    private void marcarMaquina(int posicao){
+        JButton botao;
+        switch(posicao){
+            case 0:
+                botao = this.jButton1;
+                break;
+            case 1:
+                botao = this.jButton2;
+                break;
+            case 2:
+                botao = this.jButton3;
+                break;
+            case 3:
+                botao = this.jButton4;
+                break;
+            case 4:
+                botao = this.jButton5;
+                break;
+            case 5:
+                botao = this.jButton6;
+                break;
+            case 6:
+                botao = this.jButton7;
+                break;
+            case 7:
+                botao = this.jButton8;
+                break;
+            default:
+                botao = this.jButton9;
+                break;    
+        }
+        botao.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        tabuleiro[posicao - 1] = "X";
+    }
+    
+    private void jogadaMaquina(){
+        switch(turno){
+            case 1:
+                if(tabuleiro[4].equals("")){
+                    this.marcarMaquina(4);
+                }else{
+                    this.marcarMaquina(0);
+                }
+                break;
+            case 2:
+                for(int i=0;i<9;i++){
+                    if(tabuleiro[i].equals("X")){
+                        switch(i){
+                            case 0:
+                                if(tabuleiro[1].equals("X")){
+                                    this.marcarMaquina(2);
+                                    return;
+                                }else if(tabuleiro[2].equals("X")){
+                                    if(tabuleiro[1].equals("")){
+                                        this.marcarMaquina(1);
+                                        return;
+                                    }
+                                }else if(tabuleiro[4].equals("X")){
+                                    if(tabuleiro[8].equals("")){
+                                        this.marcarMaquina(2);
+                                        return;
+                                    }
+                                }else if(tabuleiro[3].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[6].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[8].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 1:
+                                if(tabuleiro[2].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[4].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[7].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 2:
+                                if(tabuleiro[4].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[5].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[6].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[8].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 3:
+                                if(tabuleiro[4].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[5].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[6].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 4:
+                                if(tabuleiro[5].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[6].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[7].equals("X")){
+                                    this.marcarMaquina(4);
+                                }else if(tabuleiro[8].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 5:
+                                if(tabuleiro[8].equals("X")){
+                                    this.marcarMaquina(4);
+                                }
+                                break;
+                            case 6:
+                                if(tabuleiro[7].equals("x")){
+                                    this.marcarMaquina(4);
+                                }else{
+                                    this.marcarMaquina(4);
+                                }
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -192,39 +331,39 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.jButton2.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        this.jogadaJogador(2, jButton2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.jButton5.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        this.jogadaJogador(5, jButton5);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.jButton6.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        this.jogadaJogador(6, jButton6);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        this.jButton7.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        this.jogadaJogador(7, jButton7);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        this.jButton8.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        this.jogadaJogador(8, jButton8);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.jButton9.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        this.jogadaJogador(9, jButton9);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.jButton1.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        this.jogadaJogador(1, jButton1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.jButton3.setIcon(new ImageIcon(getClass().getResource("X.png")));
+        this.jogadaJogador(3, jButton3);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.jButton4.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        this.jogadaJogador(4, jButton4);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
