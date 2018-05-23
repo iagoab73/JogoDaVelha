@@ -26,9 +26,13 @@ public class Tela extends javax.swing.JFrame {
     }
     
     private void jogadaJogador(int posicao, JButton botao){
+        if(botao.getIcon() != null){
+            return;
+        }
         botao.setIcon(new ImageIcon(getClass().getResource("X.png")));
         tabuleiro[posicao - 1] = "X";
         turno++;
+        this.jogadaMaquina();
     }
     
     private void marcarMaquina(int posicao){
@@ -62,8 +66,8 @@ public class Tela extends javax.swing.JFrame {
                 botao = this.jButton9;
                 break;    
         }
-        botao.setIcon(new ImageIcon(getClass().getResource("X.png")));
-        tabuleiro[posicao - 1] = "X";
+        botao.setIcon(new ImageIcon(getClass().getResource("O.png")));
+        tabuleiro[posicao] = "O";
     }
     
     private void jogadaMaquina(){
@@ -76,87 +80,83 @@ public class Tela extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                for(int i=0;i<9;i++){
-                    if(tabuleiro[i].equals("X")){
-                        switch(i){
-                            case 0:
-                                if(tabuleiro[1].equals("X")){
-                                    this.marcarMaquina(2);
-                                    return;
-                                }else if(tabuleiro[2].equals("X")){
-                                    if(tabuleiro[1].equals("")){
-                                        this.marcarMaquina(1);
-                                        return;
-                                    }
-                                }else if(tabuleiro[4].equals("X")){
-                                    if(tabuleiro[8].equals("")){
-                                        this.marcarMaquina(2);
-                                        return;
-                                    }
-                                }else if(tabuleiro[3].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[6].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[8].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 1:
-                                if(tabuleiro[2].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[4].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[7].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 2:
-                                if(tabuleiro[4].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[5].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[6].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[8].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 3:
-                                if(tabuleiro[4].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[5].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[6].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 4:
-                                if(tabuleiro[5].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[6].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[7].equals("X")){
-                                    this.marcarMaquina(4);
-                                }else if(tabuleiro[8].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 5:
-                                if(tabuleiro[8].equals("X")){
-                                    this.marcarMaquina(4);
-                                }
-                                break;
-                            case 6:
-                                if(tabuleiro[7].equals("x")){
-                                    this.marcarMaquina(4);
-                                }else{
-                                    this.marcarMaquina(4);
-                                }
-                        }
+                if(tabuleiro[0].equals("X")){
+                    if(tabuleiro[1].equals("X")){
+                        this.marcarMaquina(2);
+                        return;
+                    }else if(tabuleiro[2].equals("X")){
+                        this.marcarMaquina(1);
+                        return;
+                    }else if(tabuleiro[3].equals("X")){
+                        this.marcarMaquina(6);
+                        return;
+                    }else if(tabuleiro[6].equals("X")){
+                        this.marcarMaquina(3);
+                        return;
                     }
+                }else if(tabuleiro[1].equals("X")){
+                    if(tabuleiro[2].equals("X")){
+                        this.marcarMaquina(0);
+                        return;
+                    }else if(tabuleiro[4].equals("X")){
+                        this.marcarMaquina(7);
+                        return;
+                    }else if(tabuleiro[7].equals("X")){
+                        this.marcarMaquina(4);
+                        return;
+                    }
+                }else if(tabuleiro[2].equals("X")){
+                    if(tabuleiro[4].equals("X")){
+                        this.marcarMaquina(6);
+                        return;
+                    }else if(tabuleiro[5].equals("X")){
+                        this.marcarMaquina(8);
+                        return;
+                    }else if(tabuleiro[6].equals("X")){
+                        if(tabuleiro[4].equals("")){
+                            this.marcarMaquina(4);
+                            return;
+                        }
+                    }else if(tabuleiro[8].equals("X")){
+                        this.marcarMaquina(5);
+                        return;
+                    }
+                }else if(tabuleiro[3].equals("X")){
+                    if(tabuleiro[4].equals("X")){
+                        this.marcarMaquina(5);
+                        return;
+                    }else if(tabuleiro[6].equals("X")){
+                        this.marcarMaquina(0);
+                        return;
+                    }
+                }else if(tabuleiro[4].equals("X")){
+                    if(tabuleiro[5].equals("X")){
+                        this.marcarMaquina(3);
+                        return;
+                    }else if(tabuleiro[6].equals("X")){
+                        this.marcarMaquina(2);
+                        return;
+                    }else if(tabuleiro[7].equals("X")){
+                        this.marcarMaquina(1);
+                        return;
+                    }
+                }else if(tabuleiro[5].equals("X")){
+                    if(tabuleiro[8].equals("X")){
+                        this.marcarMaquina(2);
+                        return;
+                    }
+                }else if(tabuleiro[6].equals("X")){
+                    if(tabuleiro[7].equals("X")){
+                        this.marcarMaquina(8);
+                        return;
+                    }else{
+                        this.marcarMaquina(7);
+                        return;
+                    }
+                }else if(tabuleiro[7].equals("X")){
+                    this.marcarMaquina(6);
+                    return;
                 }
-                break;
-            default:
                 break;
         }
     }
@@ -179,11 +179,12 @@ public class Tela extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(330, 330));
-        setMinimumSize(new java.awt.Dimension(330, 330));
+        setMaximumSize(new java.awt.Dimension(330, 380));
+        setMinimumSize(new java.awt.Dimension(330, 380));
 
         jButton1.setMaximumSize(new java.awt.Dimension(100, 100));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -275,35 +276,51 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setText("Reset");
+        jButton10.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton10.setMinimumSize(new java.awt.Dimension(100, 30));
+        jButton10.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButton10.setSize(new java.awt.Dimension(100, 30));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(5, 5, 5)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5))
         );
         layout.setVerticalGroup(
@@ -324,7 +341,9 @@ public class Tela extends javax.swing.JFrame {
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5))
+                .addGap(10, 10, 10)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -366,8 +385,24 @@ public class Tela extends javax.swing.JFrame {
         this.jogadaJogador(4, jButton4);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.turno = 0;
+        this.tabuleiro = new String[]{"","","","","","","","",""};
+        this.jButton1.setIcon(null);
+        this.jButton2.setIcon(null);
+        this.jButton3.setIcon(null);
+        this.jButton4.setIcon(null);
+        this.jButton5.setIcon(null);
+        this.jButton6.setIcon(null);
+        this.jButton7.setIcon(null);
+        this.jButton8.setIcon(null);
+        this.jButton9.setIcon(null);
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
