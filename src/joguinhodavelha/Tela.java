@@ -15,29 +15,29 @@ import javax.swing.JButton;
  */
 public class Tela extends javax.swing.JFrame {
 
-    private String[] tabuleiro;
+    private String[] t;
     private int turno;
-    
+
     public Tela() {
         this.getContentPane().setBackground(Color.BLACK);
-        this.tabuleiro = new String[]{"","","","","","","","",""};
+        this.t = new String[]{"", "", "", "", "", "", "", "", ""};
         this.turno = 0;
         initComponents();
     }
-    
-    private void jogadaJogador(int posicao, JButton botao){
-        if(botao.getIcon() != null){
+
+    private void jogadaJogador(int posicao, JButton botao) {
+        if (botao.getIcon() != null) {
             return;
         }
         botao.setIcon(new ImageIcon(getClass().getResource("X.png")));
-        tabuleiro[posicao - 1] = "X";
+        t[posicao - 1] = "X";
         turno++;
         this.jogadaMaquina();
     }
-    
-    private void marcarMaquina(int posicao){
+
+    private void marcarMaquina(int posicao) {
         JButton botao;
-        switch(posicao){
+        switch (posicao) {
             case 0:
                 botao = this.jButton1;
                 break;
@@ -64,99 +64,222 @@ public class Tela extends javax.swing.JFrame {
                 break;
             default:
                 botao = this.jButton9;
-                break;    
+                break;
         }
         botao.setIcon(new ImageIcon(getClass().getResource("O.png")));
-        tabuleiro[posicao] = "O";
+        t[posicao] = "O";
     }
-    
-    private void jogadaMaquina(){
-        switch(turno){
+
+    private void jogadaMaquina() {
+        switch (turno) {
             case 1:
-                if(tabuleiro[4].equals("")){
+                if (t[4].equals("")) {
                     this.marcarMaquina(4);
-                }else{
+                } else {
                     this.marcarMaquina(0);
                 }
                 break;
             case 2:
-                if(tabuleiro[0].equals("X")){
-                    if(tabuleiro[1].equals("X")){
+                // Defesa
+                if (t[0].equals("X")) {
+                    if (t[1].equals("X")) {
                         this.marcarMaquina(2);
                         return;
-                    }else if(tabuleiro[2].equals("X")){
+                    } else if (t[2].equals("X")) {
                         this.marcarMaquina(1);
                         return;
-                    }else if(tabuleiro[3].equals("X")){
+                    } else if (t[3].equals("X")) {
                         this.marcarMaquina(6);
                         return;
-                    }else if(tabuleiro[6].equals("X")){
+                    } else if (t[6].equals("X")) {
                         this.marcarMaquina(3);
                         return;
                     }
-                }else if(tabuleiro[1].equals("X")){
-                    if(tabuleiro[2].equals("X")){
+                } else if (t[1].equals("X")) {
+                    if (t[2].equals("X")) {
                         this.marcarMaquina(0);
                         return;
-                    }else if(tabuleiro[4].equals("X")){
+                    } else if (t[4].equals("X")) {
                         this.marcarMaquina(7);
                         return;
-                    }else if(tabuleiro[7].equals("X")){
+                    } else if (t[7].equals("X")) {
                         this.marcarMaquina(4);
                         return;
                     }
-                }else if(tabuleiro[2].equals("X")){
-                    if(tabuleiro[4].equals("X")){
+                } else if (t[2].equals("X")) {
+                    if (t[4].equals("X")) {
                         this.marcarMaquina(6);
                         return;
-                    }else if(tabuleiro[5].equals("X")){
+                    } else if (t[5].equals("X")) {
                         this.marcarMaquina(8);
                         return;
-                    }else if(tabuleiro[6].equals("X")){
-                        if(tabuleiro[4].equals("")){
+                    } else if (t[6].equals("X")) {
+                        if (t[4].equals("")) {
                             this.marcarMaquina(4);
                             return;
                         }
-                    }else if(tabuleiro[8].equals("X")){
+                    } else if (t[8].equals("X")) {
                         this.marcarMaquina(5);
                         return;
                     }
-                }else if(tabuleiro[3].equals("X")){
-                    if(tabuleiro[4].equals("X")){
+                } else if (t[3].equals("X")) {
+                    if (t[4].equals("X")) {
                         this.marcarMaquina(5);
                         return;
-                    }else if(tabuleiro[6].equals("X")){
+                    } else if (t[6].equals("X")) {
                         this.marcarMaquina(0);
                         return;
                     }
-                }else if(tabuleiro[4].equals("X")){
-                    if(tabuleiro[5].equals("X")){
+                } else if (t[4].equals("X")) {
+                    if (t[5].equals("X")) {
                         this.marcarMaquina(3);
                         return;
-                    }else if(tabuleiro[6].equals("X")){
+                    } else if (t[6].equals("X")) {
                         this.marcarMaquina(2);
                         return;
-                    }else if(tabuleiro[7].equals("X")){
+                    } else if (t[7].equals("X")) {
                         this.marcarMaquina(1);
                         return;
                     }
-                }else if(tabuleiro[5].equals("X")){
-                    if(tabuleiro[8].equals("X")){
+                } else if (t[5].equals("X")) {
+                    if (t[8].equals("X")) {
                         this.marcarMaquina(2);
                         return;
                     }
-                }else if(tabuleiro[6].equals("X")){
-                    if(tabuleiro[7].equals("X")){
+                } else if (t[6].equals("X")) {
+                    if (t[7].equals("X")) {
                         this.marcarMaquina(8);
                         return;
-                    }else{
+                    } else {
                         this.marcarMaquina(7);
                         return;
                     }
-                }else if(tabuleiro[7].equals("X")){
+                } else if (t[7].equals("X")) {
                     this.marcarMaquina(6);
                     return;
                 }
+                // Armação
+                if (t[0].equals("O")) {
+                    if (t[2].equals("") && t[1].equals("")) {
+                        this.marcarMaquina(2);
+                    } else {
+                        this.marcarMaquina(6);
+                    }
+                } else if (t[0].equals("") && t[8].equals("")) {
+                    if (t[5].equals("X") || t[7].equals("X")) {
+                        this.marcarMaquina(8);
+                    } else {
+                        this.marcarMaquina(0);
+                    }
+
+                } else {
+                    this.marcarMaquina(2);
+                }
+                break;
+            case 3:
+                // Ataque
+                if (t[0].equals("O")) {
+                    if (t[1].equals("O") && t[2].equals("")) {
+                        this.marcarMaquina(2);
+                    } else if (t[2].equals("O") && t[1].equals("")) {
+                        this.marcarMaquina(1);
+                    } else if (t[3].equals("O") && t[6].equals("")) {
+                        this.marcarMaquina(6);
+                    } else if (t[6].equals("O") && t[3].equals("")) {
+                        this.marcarMaquina(3);
+                    } else if (t[4].equals("O") && t[8].equals("")) {
+                        this.marcarMaquina(8);
+                    }
+                    // Defesa
+                    if (t[4].equals("X")) {
+                        if (t[1].equals("X") && t[7].equals("")) {
+                            this.marcarMaquina(7);
+                        } else if (t[7].equals("X") && t[1].equals("")) {
+                            this.marcarMaquina(1);
+                        } else if (t[2].equals("X") && t[6].equals("")) {
+                            this.marcarMaquina(6);
+                        } else if (t[6].equals("X") && t[2].equals("")) {
+                            this.marcarMaquina(2);
+                        } else if (t[5].equals("X") && t[3].equals("")) {
+                            this.marcarMaquina(3);
+                        } else if (t[3].equals("X") && t[5].equals("")) {
+                            this.marcarMaquina(5);
+                        }
+                    }else{
+                        if (t[2].equals("X") && t[8].equals("X") && t[5].equals("")) {
+                            this.marcarMaquina(5);
+                        } else if (t[2].equals("X") && t[5].equals("X") && t[8].equals("")) {
+                            this.marcarMaquina(8);
+                        } else if (t[5].equals("X") && t[8].equals("X") && t[2].equals("")) {
+                            this.marcarMaquina(2);
+                        } else if (t[6].equals("X") && t[7].equals("X") && t[8].equals("")) {
+                            this.marcarMaquina(8);
+                        } else if (t[6].equals("X") && t[8].equals("X") && t[7].equals("")) {
+                            this.marcarMaquina(7);
+                        } else if (t[7].equals("X") && t[8].equals("X") && t[6].equals("")) {
+                            this.marcarMaquina(6);
+                        }
+                    }
+                    // Armação
+                } else {
+                    if (t[1].equals("O") && t[7].equals("")) {
+                        this.marcarMaquina(7);
+                    } else if (t[7].equals("O") && t[1].equals("")) {
+                        this.marcarMaquina(1);
+                    } else if (t[2].equals("O") && t[6].equals("")) {
+                        this.marcarMaquina(6);
+                    } else if (t[6].equals("O") && t[2].equals("")) {
+                        this.marcarMaquina(2);
+                    } else if (t[5].equals("O") && t[3].equals("")) {
+                        this.marcarMaquina(3);
+                    } else if (t[3].equals("O") && t[5].equals("")) {
+                        this.marcarMaquina(5);
+                    }
+                    if (t[2].equals("O")) {
+                        if (t[0].equals("X") && t[3].equals("X") && t[6].equals("")) {
+                            this.marcarMaquina(6);
+                        } else if (t[0].equals("X") && t[6].equals("X") && t[3].equals("")) {
+                            this.marcarMaquina(3);
+                        } else if (t[3].equals("X") && t[6].equals("X") && t[0].equals("")) {
+                            this.marcarMaquina(0);
+                        } else if (t[6].equals("X") && t[7].equals("X") && t[8].equals("")) {
+                            this.marcarMaquina(8);
+                        } else if (t[6].equals("X") && t[8].equals("X") && t[7].equals("")) {
+                            this.marcarMaquina(7);
+                        } else if (t[7].equals("X") && t[8].equals("X") && t[6].equals("")) {
+                            this.marcarMaquina(6);
+                        }
+                    } else if (t[6].equals("O")) {
+                        if (t[2].equals("X") && t[8].equals("X") && t[5].equals("")) {
+                            this.marcarMaquina(5);
+                        } else if (t[2].equals("X") && t[5].equals("X") && t[8].equals("")) {
+                            this.marcarMaquina(8);
+                        } else if (t[5].equals("X") && t[8].equals("X") && t[2].equals("")) {
+                            this.marcarMaquina(2);
+                        } else if (t[0].equals("X") && t[1].equals("X") && t[2].equals("")) {
+                            this.marcarMaquina(2);
+                        } else if (t[0].equals("X") && t[2].equals("X") && t[1].equals("")) {
+                            this.marcarMaquina(1);
+                        } else if (t[1].equals("X") && t[2].equals("X") && t[0].equals("")) {
+                            this.marcarMaquina(0);
+                        }
+                    } else if (t[8].equals("O")) {
+                        if (t[0].equals("X") && t[3].equals("X") && t[6].equals("")) {
+                            this.marcarMaquina(6);
+                        } else if (t[0].equals("X") && t[6].equals("X") && t[3].equals("")) {
+                            this.marcarMaquina(3);
+                        } else if (t[3].equals("X") && t[6].equals("X") && t[0].equals("")) {
+                            this.marcarMaquina(0);
+                        } else if (t[0].equals("X") && t[1].equals("X") && t[2].equals("")) {
+                            this.marcarMaquina(2);
+                        } else if (t[0].equals("X") && t[2].equals("X") && t[1].equals("")) {
+                            this.marcarMaquina(1);
+                        } else if (t[1].equals("X") && t[2].equals("X") && t[0].equals("")) {
+                            this.marcarMaquina(0);
+                        }
+                    }
+                }
+
                 break;
         }
     }
@@ -387,7 +510,7 @@ public class Tela extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.turno = 0;
-        this.tabuleiro = new String[]{"","","","","","","","",""};
+        this.t = new String[]{"", "", "", "", "", "", "", "", ""};
         this.jButton1.setIcon(null);
         this.jButton2.setIcon(null);
         this.jButton3.setIcon(null);
@@ -397,7 +520,7 @@ public class Tela extends javax.swing.JFrame {
         this.jButton7.setIcon(null);
         this.jButton8.setIcon(null);
         this.jButton9.setIcon(null);
-        
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
