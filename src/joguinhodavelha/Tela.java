@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package joguinhodavelha;
 
 import java.awt.Color;
@@ -12,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author hugosilva
+ * @author Iago Arantes, Hugo Silva, Jean Silva
  */
 public class Tela extends javax.swing.JFrame {
 
@@ -218,11 +213,19 @@ public class Tela extends javax.swing.JFrame {
                         this.marcarMaquina(8);
                         return;                        
                     } else {
-                        this.marcarMaquina(0);
+                        if(t[2].equals("X") && t[6].equals("X")){
+                            this.marcarMaquina(7);
+                        }else{
+                            this.marcarMaquina(0);
+                        }
                         return;
                     }
                 }
-                this.marcarMaquina(2);
+                if(t[0].equals("X") && t[8].equals("X")){
+                    this.marcarMaquina(7);
+                }else{
+                    this.marcarMaquina(2);
+                }
                 break;
             case 3:
                 // Ataque
@@ -382,7 +385,12 @@ public class Tela extends javax.swing.JFrame {
                     this.marcarMaquina(6);
                 }else if(t[0].equals("X") && t[6].equals("X") && t[3].equals("")){
                     this.marcarMaquina(3);
-                }else{
+                }else if(t[2].equals("X") && t[5].equals("X") && t[8].equals("")){
+                    this.marcarMaquina(8);
+                }else if(t[2].equals("X") && t[8].equals("X") && t[5].equals("")){
+                    this.marcarMaquina(5);
+                }
+                else{
                     for(int i=0; i<9; i++){
                         if(t[i].equals("")){
                             this.marcarMaquina(i);
