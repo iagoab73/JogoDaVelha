@@ -389,6 +389,10 @@ public class Tela extends javax.swing.JFrame {
                     this.marcarMaquina(8);
                 }else if(t[2].equals("X") && t[8].equals("X") && t[5].equals("")){
                     this.marcarMaquina(5);
+                }else if(t[8].equals("X") && t[7].equals("X") && t[6].equals("")){
+                    this.marcarMaquina(6);
+                }else if(t[6].equals("X") && t[8].equals("X") && t[7].equals("")){
+                    this.marcarMaquina(7);
                 }
                 else{
                     for(int i=0; i<9; i++){
