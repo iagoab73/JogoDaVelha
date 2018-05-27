@@ -56,7 +56,11 @@ public class Tela extends javax.swing.JFrame {
            t[2].equals("O") && t[4].equals("O") && t[6].equals("O") ||
            t[3].equals("O") && t[4].equals("O") && t[5].equals("O") ||
            t[6].equals("O") && t[7].equals("O") && t[8].equals("O")){
-            JOptionPane.showMessageDialog(null, "Vitória da Máquina!", "Fim de Jogo", 0);
+            JOptionPane.showMessageDialog(null, "Vitória da Máquina!", "Fim de Jogo", 1);
+            this.reseta();
+            return true;
+        }else if(!t[0].equals("") && !t[1].equals("") && !t[2].equals("") && !t[3].equals("") && !t[4].equals("") && !t[5].equals("") && !t[6].equals("") && !t[7].equals("") && !t[8].equals("")){
+            JOptionPane.showMessageDialog(null, "Empate!", "Fim de Jogo", 1);
             this.reseta();
             return true;
         }
